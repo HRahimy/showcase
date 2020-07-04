@@ -1886,7 +1886,8 @@
           "MediatR": "7.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Microsoft.EntityFrameworkCore": "3.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "3.0.0"
+          "Microsoft.Extensions.Logging.Abstractions": "3.0.0",
+          "Showcase.Domain": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Showcase.Application.dll": {}
@@ -1903,6 +1904,16 @@
         },
         "runtime": {
           "bin/placeholder/Showcase.Common.dll": {}
+        }
+      },
+      "Showcase.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Showcase.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Showcase.Domain.dll": {}
         }
       }
     }
@@ -6262,6 +6273,11 @@
       "type": "project",
       "path": "../Common/Common.csproj",
       "msbuildProject": "../Common/Common.csproj"
+    },
+    "Showcase.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {

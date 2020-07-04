@@ -440,6 +440,16 @@
         "runtime": {
           "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {}
         }
+      },
+      "Showcase.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Showcase.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Showcase.Domain.dll": {}
+        }
       }
     }
   },
@@ -1621,6 +1631,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Showcase.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1631,7 +1646,8 @@
       "MediatR >= 7.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 7.0.0",
       "Microsoft.EntityFrameworkCore >= 3.0.0",
-      "Microsoft.Extensions.Logging.Abstractions >= 3.0.0"
+      "Microsoft.Extensions.Logging.Abstractions >= 3.0.0",
+      "Showcase.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1663,7 +1679,11 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\code-repos\\showcase\\src\\csharp-mono\\Showcase\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\code-repos\\showcase\\src\\csharp-mono\\Showcase\\Domain\\Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
