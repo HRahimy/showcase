@@ -9,10 +9,13 @@ namespace Showcase.REST.Portfolio.Services
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
             UserId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+            Username = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Name);
             IsAuthenticated = UserId != null;
         }
 
         public string UserId { get; }
+
+        public string Username { get; }
 
         public bool IsAuthenticated { get; }
     }

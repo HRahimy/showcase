@@ -30,6 +30,7 @@ namespace Showcase.Persistence
 
         // TODO: Add configuration classes for all entities
         public DbSet<DisplayProject> DisplayProjects { get; set; }
+        public DbSet<Developer> Developers { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
