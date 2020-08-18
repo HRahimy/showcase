@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Showcase.Domain.Entities;
-using Showcase.Domain.Enums;
 using Showcase.Persistence;
 using System;
 
@@ -20,19 +19,15 @@ namespace Showcase.Application.UnitTests.Common
 
             context.Developers.AddRange(new[]
             {
-                new Developer { DeveloperId = "HAMZA", Name = "Hamza Rahimy" },
-                new Developer { DeveloperId = "JASON", Name = "Jason Taylor" },
-                new Developer {DeveloperId = "ELON", Name = "Elon Musk"}
+                new ShowcaseProfile { ProfileId = "HAMZA", Name = "Hamza Rahimy" },
+                new ShowcaseProfile { ProfileId = "JASON", Name = "Jason Taylor" },
+                new ShowcaseProfile {ProfileId = "ELON", Name = "Elon Musk"}
             });
 
             context.DisplayProjects.Add(new DisplayProject
             {
                 Id = "SHOWCASE",
                 Name = "Showcase Portfolios",
-                Languages = new EPRogrammingLanguage[] {
-                    EPRogrammingLanguage.CSharp,
-                    EPRogrammingLanguage.JavaScript
-                },
                 SourceCodeUrl = "https://github.com/HRahimy/showcase"
             });
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 
 namespace Showcase.Application.Developers.Queries.GetProfileDetail
 {

@@ -2,7 +2,7 @@
 
 namespace Showcase.Application.Developers.Queries.GetProfileDetail
 {
-    public class GetProfileDetailQuery : IRequest<DeveloperProfileVm>
+    public class GetProfileDetailQuery : IRequest<DeveloperProfileDto>
     {
         public string ProfileId { get; set; }
     }

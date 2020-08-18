@@ -8,7 +8,9 @@ namespace Showcase.Application.Common.Interfaces
     public interface IShowcaseDbContext
     {
         DbSet<DisplayProject> DisplayProjects { get; set; }
-        DbSet<Developer> Developers { get; set; }
+        DbSet<ShowcaseProfile> Developers { get; set; }
+        DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+        DbSet<ProfileWatcher> Watchers { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

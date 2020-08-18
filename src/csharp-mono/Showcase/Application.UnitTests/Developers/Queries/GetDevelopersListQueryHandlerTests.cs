@@ -26,11 +26,13 @@ namespace Showcase.Application.UnitTests.Developers.Queries
         {
             var sut = new GetDevelopersListQueryHandler(_context, _mapper);
 
-            var result = await sut.Handle(new GetDevelopersListQuery(), CancellationToken.None);
+            var result = await sut.Handle(new GetDevelopersListQuery { Page = 1 }, CancellationToken.None);
 
             result.ShouldBeOfType<DevelopersListVm>();
 
             result.Developers.Count.ShouldBe(3);
+
+            result.Developers.Count.ShouldBeLessThan(31);
         }
     }
 }

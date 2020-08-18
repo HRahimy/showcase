@@ -18,7 +18,7 @@ namespace Showcase.Application.Projects.Queries.GetProjectDetail
             _mapper = mapper;
         }
 
-        public async Task<ProjectsListVm> Handle(GetProjectDetailQuery request, CancellationToken cancellationToken)
+        Task<ProjectDetailVm> IRequestHandler<GetProjectDetailQuery, ProjectDetailVm>.Handle(GetProjectDetailQuery request, CancellationToken cancellationToken)
         {
             throw new System.NotImplementedException();
         }

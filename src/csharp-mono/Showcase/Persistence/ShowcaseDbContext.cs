@@ -3,6 +3,8 @@ using Showcase.Application.Common.Interfaces;
 using Showcase.Common;
 using Showcase.Domain.Common;
 using Showcase.Domain.Entities;
+using Showcase.Domain.Enums;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,7 +32,9 @@ namespace Showcase.Persistence
 
         // TODO: Add configuration classes for all entities
         public DbSet<DisplayProject> DisplayProjects { get; set; }
-        public DbSet<Developer> Developers { get; set; }
+        public DbSet<ShowcaseProfile> Developers { get; set; }
+        public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
+        public DbSet<ProfileWatcher> Watchers { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
