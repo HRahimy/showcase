@@ -1,12 +1,12 @@
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Application.deps.json
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Application.dll
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Application.pdb
+C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Domain.dll
+C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Domain.pdb
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Application.csprojAssemblyReference.cache
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Application.AssemblyInfoInputs.cache
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Application.AssemblyInfo.cs
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Application.csproj.CoreCompileInputs.cache
+C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Application.csproj.CopyComplete
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Showcase.Application.dll
 C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Showcase.Application.pdb
-C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Domain.dll
-C:\code-repos\showcase\src\csharp-mono\Showcase\Application\bin\Debug\netstandard2.1\Showcase.Domain.pdb
-C:\code-repos\showcase\src\csharp-mono\Showcase\Application\obj\Debug\netstandard2.1\Application.csproj.CopyComplete

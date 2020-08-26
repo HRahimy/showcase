@@ -5,8 +5,10 @@ C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Persistence.pdb
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Application.dll
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Common.dll
+C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Domain.dll
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Application.pdb
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Common.pdb
+C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Domain.pdb
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp3.0\Persistence.csprojAssemblyReference.cache
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp3.0\Persistence.AssemblyInfoInputs.cache
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp3.0\Persistence.AssemblyInfo.cs
@@ -15,5 +17,3 @@ C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp3.0\Showcase.Persistence.dll
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp3.0\Showcase.Persistence.pdb
 C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\obj\Debug\netcoreapp3.0\Persistence.genruntimeconfig.cache
-C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Domain.dll
-C:\code-repos\showcase\src\csharp-mono\Showcase\Persistence\bin\Debug\netcoreapp3.0\Showcase.Domain.pdb

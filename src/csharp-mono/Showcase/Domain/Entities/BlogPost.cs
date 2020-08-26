@@ -1,28 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Showcase.Domain.Common;
+using System.Collections.Generic;
 
 namespace Showcase.Domain.Entities
 {
-    public class BlogPost
+    public class BlogPost : AuditableEntity
     {
         public BlogPost()
         {
             Tags = new HashSet<BlogPostTag>();
             Watchers = new HashSet<BlogPostWatcher>();
             Notes = new HashSet<ActivityNote>();
-            ProgrammingLanguages = new HashSet<ProgrammingLanguage>();
         }
 
-        public string PostId { get; set; }
+        public string BlogPostId { get; set; }
         public string Title { get; set; }
         public string Summary { get; set; }
         public string PostContentString { get; set; }
         public string PostContentMdFileId { get; set; }
+        public string PostThumbnailFileId { get; set; }
 
         public ICollection<BlogPostTag> Tags { get; private set; }
         public ICollection<BlogPostWatcher> Watchers { get; private set; }
         public ICollection<ActivityNote> Notes { get; private set; }
-        public ICollection<ProgrammingLanguage> ProgrammingLanguages { get; private set; }
 
-        // TODO: Add bucket file entity reference for PostContentMdFileId once implemented
+        public BucketFile PostContentMdFile { get; set; }
+        public BucketFile PostThumbnailFile { get; set; }
     }
 }

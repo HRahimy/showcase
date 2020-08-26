@@ -4,7 +4,7 @@ namespace Showcase.Domain.Entities
 {
     public class ActivityNote
     {
-        public string NoteId { get; set; }
+        public string ActivityNoteId { get; set; }
         public EActivityType ActivityType { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

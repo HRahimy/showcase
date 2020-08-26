@@ -23,7 +23,7 @@ namespace Showcase.Application.Developers.Queries.GetProfileDetail
         }
         public async Task<DeveloperProfileDto> Handle(GetProfileDetailQuery request, CancellationToken cancellationToken)
         {
-            var vm = await _context.Developers
+            var vm = await _context.Profiles
                 .Where(e => e.ProfileId == request.ProfileId)
                 .ProjectTo<DeveloperProfileDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync(cancellationToken);

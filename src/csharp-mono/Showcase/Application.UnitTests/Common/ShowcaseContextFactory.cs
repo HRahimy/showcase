@@ -17,7 +17,7 @@ namespace Showcase.Application.UnitTests.Common
 
             context.Database.EnsureCreated();
 
-            context.Developers.AddRange(new[]
+            context.Profiles.AddRange(new[]
             {
                 new ShowcaseProfile { ProfileId = "HAMZA", Name = "Hamza Rahimy" },
                 new ShowcaseProfile { ProfileId = "JASON", Name = "Jason Taylor" },

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Showcase.Application.Common.Interfaces;
 using Showcase.Common;
 using Showcase.Domain.Common;
@@ -18,7 +19,10 @@ namespace Showcase.Persistence
         public ShowcaseDbContext(DbContextOptions<ShowcaseDbContext> options)
             : base(options)
         {
-
+            // Map enums
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<EActivityType>();
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<EPRogrammingLanguage>();
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<ETagType>();
         }
 
         public ShowcaseDbContext(DbContextOptions<ShowcaseDbContext> options, 
@@ -28,13 +32,25 @@ namespace Showcase.Persistence
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
+
+            // Map enums
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<EActivityType>();
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<EPRogrammingLanguage>();
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<ETagType>();
         }
 
-        // TODO: Add configuration classes for all entities
+        public DbSet<ActivityNote> ActivityNotes { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<BlogPostTag> BlogPostTags { get; set; }
+        public DbSet<BlogPostWatcher> BlogPostWatchers { get; set; }
+        public DbSet<BucketFile> BucketFiles { get; set; }
         public DbSet<DisplayProject> DisplayProjects { get; set; }
-        public DbSet<ShowcaseProfile> Developers { get; set; }
-        public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
-        public DbSet<ProfileWatcher> Watchers { get; set; }
+        public DbSet<ProfileTag> ProfileTags { get; set; }
+        public DbSet<ProfileWatcher> ProfileWatchers { get; set; }
+        public DbSet<ProjectTag> ProjectTags { get; set; }
+        public DbSet<ProjectWatcher> ProjectWatchers { get; set; }
+        public DbSet<ShowcaseProfile> Profiles { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -59,6 +75,10 @@ namespace Showcase.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ShowcaseDbContext).Assembly);
+
+            modelBuilder.HasPostgresEnum<EActivityType>();
+            modelBuilder.HasPostgresEnum<EPRogrammingLanguage>();
+            modelBuilder.HasPostgresEnum<ETagType>();
         }
     }
 }
