@@ -1,9 +1,0 @@
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\bin\Debug\netstandard2.1\Showcase.Common.deps.json
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\bin\Debug\netstandard2.1\Showcase.Common.dll
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\bin\Debug\netstandard2.1\Showcase.Common.pdb
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\obj\Debug\netstandard2.1\Common.AssemblyInfoInputs.cache
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\obj\Debug\netstandard2.1\Common.AssemblyInfo.cs
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\obj\Debug\netstandard2.1\Common.csproj.CoreCompileInputs.cache
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\obj\Debug\netstandard2.1\Showcase.Common.dll
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\obj\Debug\netstandard2.1\Showcase.Common.pdb
-C:\code-repos\showcase\src\csharp-mono\Showcase\Common\obj\Debug\netstandard2.1\Common.csprojAssemblyReference.cache
