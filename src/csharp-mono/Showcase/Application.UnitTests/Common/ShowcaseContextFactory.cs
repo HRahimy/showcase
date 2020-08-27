@@ -19,9 +19,9 @@ namespace Showcase.Application.UnitTests.Common
 
             context.Profiles.AddRange(new[]
             {
-                new ShowcaseProfile { ProfileId = "HAMZA", Name = "Hamza Rahimy" },
-                new ShowcaseProfile { ProfileId = "JASON", Name = "Jason Taylor" },
-                new ShowcaseProfile {ProfileId = "ELON", Name = "Elon Musk"}
+                new ShowcaseProfile { ProfileId = "HAMZA", Username = "hrah12",  Name = "Hamza Rahimy" },
+                new ShowcaseProfile { ProfileId = "JASON", Username = "jason13", Name = "Jason Taylor" },
+                new ShowcaseProfile {ProfileId = "ELON", Username = "elon14", Name = "Elon Musk"}
             });
 
             context.DisplayProjects.Add(new DisplayProject

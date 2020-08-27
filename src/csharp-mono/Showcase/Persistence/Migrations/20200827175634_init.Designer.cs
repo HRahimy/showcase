@@ -11,7 +11,7 @@ using Showcase.Persistence;
 namespace Showcase.Persistence.Migrations
 {
     [DbContext(typeof(ShowcaseDbContext))]
-    [Migration("20200826165734_init")]
+    [Migration("20200827175634_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -383,6 +383,10 @@ namespace Showcase.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnName("username")
                         .HasColumnType("text");
 
                     b.HasKey("ProfileId");

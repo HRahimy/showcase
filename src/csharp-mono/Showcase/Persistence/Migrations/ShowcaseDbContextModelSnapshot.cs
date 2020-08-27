@@ -383,6 +383,10 @@ namespace Showcase.Persistence.Migrations
                         .HasColumnName("name")
                         .HasColumnType("text");
 
+                    b.Property<string>("Username")
+                        .HasColumnName("username")
+                        .HasColumnType("text");
+
                     b.HasKey("ProfileId");
 
                     b.ToTable("profiles");

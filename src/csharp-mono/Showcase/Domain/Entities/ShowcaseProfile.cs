@@ -15,6 +15,7 @@ namespace Showcase.Domain.Entities
             Notes = new HashSet<ActivityNote>();
         }
         public string ProfileId { get; set; }
+        public string Username { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<ProfileWatcher> Watchers { get; private set; }

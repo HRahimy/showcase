@@ -48,6 +48,9 @@ namespace Showcase.REST.Portfolio.Common
                 case MethodNotAllowedException methodNotAllowedException:
                     code = HttpStatusCode.MethodNotAllowed;
                     break;
+                case ForbiddenException forbiddenException:
+                    code = HttpStatusCode.Forbidden;
+                    break;
                 case NotFoundException _:
                     code = HttpStatusCode.NotFound;
                     break;
