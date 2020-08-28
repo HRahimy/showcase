@@ -45,8 +45,8 @@ namespace Showcase.REST.Portfolio.Common
                     code = HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
                     break;
-                case MethodNotAllowedException methodNotAllowedException:
-                    code = HttpStatusCode.MethodNotAllowed;
+                case ResourceConflictException conflictException:
+                    code = HttpStatusCode.Conflict;
                     break;
                 case ForbiddenException forbiddenException:
                     code = HttpStatusCode.Forbidden;
