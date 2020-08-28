@@ -68,6 +68,7 @@ namespace Showcase.Persistence.Migrations
                     last_modified_by = table.Column<string>(nullable: true),
                     last_modified_on = table.Column<DateTime>(nullable: true),
                     username = table.Column<string>(nullable: true),
+                    email = table.Column<string>(nullable: true),
                     name = table.Column<string>(nullable: false),
                     description = table.Column<string>(nullable: true)
                 },

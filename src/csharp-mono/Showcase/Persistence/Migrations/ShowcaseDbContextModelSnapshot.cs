@@ -370,6 +370,10 @@ namespace Showcase.Persistence.Migrations
                         .HasColumnName("description")
                         .HasColumnType("text");
 
+                    b.Property<string>("Email")
+                        .HasColumnName("email")
+                        .HasColumnType("text");
+
                     b.Property<string>("LastModifiedBy")
                         .HasColumnName("last_modified_by")
                         .HasColumnType("text");
