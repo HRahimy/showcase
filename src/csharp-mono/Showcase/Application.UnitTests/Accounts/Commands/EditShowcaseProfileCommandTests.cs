@@ -82,7 +82,7 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
         }
 
         [Fact]
-        public async Task GivenNonUniqueUsername_ThrowsNotAllowedException()
+        public async Task GivenNonUniqueUsername_ThrowsResourceConflictException()
         {
             // Arrange
             var command = new EditShowcaseProfileCommand
@@ -94,7 +94,7 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
             };
 
             // Assert
-            await Assert.ThrowsAsync<MethodNotAllowedException>(() => _sut.Handle(command, CancellationToken.None));
+            await Assert.ThrowsAsync<ResourceConflictException>(() => _sut.Handle(command, CancellationToken.None));
         }
 
         [Fact]
