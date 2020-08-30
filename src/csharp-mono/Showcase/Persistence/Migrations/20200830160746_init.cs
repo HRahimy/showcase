@@ -9,7 +9,7 @@ namespace Showcase.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("Npgsql:Enum:e_activity_type", "add_dev_prog_lang,remove_dev_prog_lang,add_proj_prog_lang,remove_proj_prog_lang,watch_developer,unwatch_developer,watch_project,unwatch_project,add_blog_post,edit_blog_post,publish_blog_post,archive_blog_post,add_twitter_testimonial,remove_twitter_testimonial,add_facebook_testimonial,remove_facebook_testimonial,display_twitter_testimonial,undisplay_twitter_testimonial,display_facebook_testimonial,undisplay_facebook_testimonial")
+                .Annotation("Npgsql:Enum:e_activity_type", "add_dev_prog_lang,remove_dev_prog_lang,add_proj_prog_lang,remove_proj_prog_lang,watch_developer,unwatch_developer,watch_project,unwatch_project,add_blog_post,edit_blog_post,publish_blog_post,archive_blog_post,add_twitter_testimonial,remove_twitter_testimonial,add_facebook_testimonial,remove_facebook_testimonial,display_twitter_testimonial,undisplay_twitter_testimonial,display_facebook_testimonial,undisplay_facebook_testimonial,add_new_profile,edit_profile")
                 .Annotation("Npgsql:Enum:e_tag_type", "meta,programming_language")
                 .Annotation("Npgsql:Enum:ep_rogramming_language", "c_sharp,java,java_script,go");
 
@@ -226,6 +226,10 @@ namespace Showcase.Persistence.Migrations
                 columns: table => new
                 {
                     activity_note_id = table.Column<string>(nullable: false),
+                    created_by = table.Column<string>(nullable: true),
+                    created_on = table.Column<DateTime>(nullable: false),
+                    last_modified_by = table.Column<string>(nullable: true),
+                    last_modified_on = table.Column<DateTime>(nullable: true),
                     activity_type = table.Column<EActivityType>(nullable: false),
                     title = table.Column<string>(nullable: true),
                     description = table.Column<string>(nullable: true),

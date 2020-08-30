@@ -1,8 +1,9 @@
-﻿using Showcase.Domain.Enums;
+﻿using Showcase.Domain.Common;
+using Showcase.Domain.Enums;
 
 namespace Showcase.Domain.Entities
 {
-    public class ActivityNote
+    public class ActivityNote : AuditableEntity
     {
         public string ActivityNoteId { get; set; }
         public EActivityType ActivityType { get; set; }

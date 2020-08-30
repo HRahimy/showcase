@@ -22,5 +22,7 @@
         UndisplayTwitterTestimonial,
         DisplayFacebookTestimonial,
         UndisplayFacebookTestimonial,
+        AddNewProfile,
+        EditProfile
     }
 }

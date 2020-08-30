@@ -1,12 +1,17 @@
 ﻿using Showcase.Application.Common.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Showcase.Application.Common.Interfaces
 {
     public interface IUserManager
     {
-        Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
-
+        Task<(Result Result, string UserId)> CreateUserAsync(string name, string email, string password, string givenName = null, string familyName = null, string nickName = null, string username = null, Dictionary<string, object> userMetadata = null, Dictionary<string, object> appMetadata = null);
+        Task<(Result Result, Auth0User User)> GetUserAsync(string userId);
+        Task<(Result Result, Auth0User User)> EditUserAsync(string userId, string userName = null, string givenName = null, string familyName = null, string nickName = null, string name = null, Dictionary<string, object> userMetadata = null, Dictionary<string, object> appMetadata = null, bool blocked = false);
+        Task<(Result Result, Auth0User User)> VerifyEmail(string userId);
+        Task<(Result Result, Auth0User User)> SendVerificationEmail(string userId);
+        Task<(Result Result, Auth0User User)> ResetPasswordAsync(string userId, string newPassword);
         Task<Result> DeleteUserAsync(string userId);
     }
 }
