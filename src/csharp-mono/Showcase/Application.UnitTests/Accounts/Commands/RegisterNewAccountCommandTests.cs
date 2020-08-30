@@ -142,10 +142,12 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
 
             // Assert
             var profile = await _context.Profiles.FindAsync(_currentUserMock.Object.UserId);
-            var notes = await _context.ActivityNotes.Where(e => e.ShowcaseProfileId == _currentUserMock.Object.UserId && e.CreatedOn == DateTime.Now).ToListAsync();
 
             Assert.NotNull(profile);
+
+            var notes = await _context.ActivityNotes.Where(e => e.ShowcaseProfileId == _currentUserMock.Object.UserId && e.CreatedOn == profile.CreatedOn).ToListAsync();
             Assert.True(notes.Count >= 1);
+
             Assert.Equal(_currentUserMock.Object.Username, profile.Name);
             Assert.Equal(_currentUserMock.Object.Email, profile.Email);
             Assert.Equal(_currentUserMock.Object.UserId, profile.ProfileId);
