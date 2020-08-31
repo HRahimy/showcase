@@ -7,7 +7,6 @@ namespace Showcase.Application.Accounts.Commands.ResetAccountPassword
 {
     public class ResetAccountPasswordCommand : IRequest
     {
-        public string UserId { get; set; }
         public string NewPassword { get; set; }
         public string ConfirmPassword { get; set; }
 
