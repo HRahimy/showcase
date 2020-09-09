@@ -11,7 +11,9 @@ namespace Showcase.Application.Common.Interfaces
         Task<(Result Result, Auth0User User)> EditUserAsync(string userId, string userName = null, string givenName = null, string familyName = null, string nickName = null, string name = null, Dictionary<string, object> userMetadata = null, Dictionary<string, object> appMetadata = null, bool blocked = false);
         Task<(Result Result, Auth0User User)> VerifyEmail(string userId);
         Task<(Result Result, Auth0User User)> SendVerificationEmail(string userId);
-        Task<(Result Result, Auth0User User)> ResetPasswordAsync(string userId, string newPassword);
+        /* Uses Auth0 Authentication API to send password reset email to the user
+         */
+        Task<(Result Result, Auth0User User)> ResetPasswordAsync(string email);
         Task<Result> DeleteUserAsync(string userId);
     }
 }

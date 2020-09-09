@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using Shouldly;
 using Showcase.Application.Accounts.Commands.RegisterNewAccount;
 using Showcase.Application.Common.Exceptions;
 using Showcase.Application.Common.Interfaces;
