@@ -83,9 +83,7 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/todos/jest.config.js",
-            "tsConfig": "apps/todos/tsconfig.spec.json",
-            "passWithNoTests": true,
-            "setupFile": "apps/todos/src/test-setup.ts"
+            "passWithNoTests": true
           }
         }
       }
