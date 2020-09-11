@@ -169,7 +169,7 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
             _currentUserMock.Setup(m => m.UserId).Returns("NEWPROFILE");
             _currentUserMock.Setup(m => m.Username).Returns("New User");
             _currentUserMock.Setup(m => m.Email).Returns("newuser@email.com");
-            _userManagerMock.Setup(m => m.GetUserAsync(_currentUserMock.Object.UserId)).ReturnsAsync((Result.Success(), new Auth0User { EmailVerified = false}));
+            _userManagerMock.Setup(m => m.GetUserAsync(_currentUserMock.Object.UserId)).ReturnsAsync((Result.Success(), new ShowcaseUser { EmailVerified = false}));
             var command = new RegisterNewAccountCommand
             {
                 PublicProfileUsername = "newProfileGuy",
@@ -197,7 +197,7 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
             _currentUserMock.Setup(m => m.UserId).Returns("NEWPROFILE");
             _currentUserMock.Setup(m => m.Username).Returns("New User");
             _currentUserMock.Setup(m => m.Email).Returns("newuser@email.com");
-            _userManagerMock.Setup(m => m.GetUserAsync(_currentUserMock.Object.UserId)).ReturnsAsync((Result.Success(), new Auth0User { EmailVerified = false }));
+            _userManagerMock.Setup(m => m.GetUserAsync(_currentUserMock.Object.UserId)).ReturnsAsync((Result.Success(), new ShowcaseUser { EmailVerified = false }));
             var command = new RegisterNewAccountCommand
             {
                 PublicProfileUsername = "newProfileGuy",
