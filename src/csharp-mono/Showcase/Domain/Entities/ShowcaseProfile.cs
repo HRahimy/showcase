@@ -19,11 +19,13 @@ namespace Showcase.Domain.Entities
         public string Email { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ProfilePictureId { get; set; }
         public ICollection<ProfileWatcher> Watchers { get; private set; }
         public ICollection<ProfileWatcher> WatchingProfiles { get; private set; }
         public ICollection<BlogPostWatcher> WatchingBlogPosts { get; private set; }
         public ICollection<ProjectWatcher> WatchingProjects { get; private set; }
         public ICollection<ProfileTag> Tags { get; private set; }
         public ICollection<ActivityNote> Notes { get; private set; }
+        public BucketFile ProfilePicture { get; set; }
     }
 }

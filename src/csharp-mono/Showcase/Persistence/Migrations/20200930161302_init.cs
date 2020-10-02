@@ -59,25 +59,6 @@ namespace Showcase.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "profiles",
-                columns: table => new
-                {
-                    profile_id = table.Column<string>(nullable: false),
-                    created_by = table.Column<string>(nullable: true),
-                    created_on = table.Column<DateTime>(nullable: false),
-                    last_modified_by = table.Column<string>(nullable: true),
-                    last_modified_on = table.Column<DateTime>(nullable: true),
-                    username = table.Column<string>(nullable: true),
-                    email = table.Column<string>(nullable: true),
-                    name = table.Column<string>(nullable: false),
-                    description = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_profiles", x => x.profile_id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tags",
                 columns: table => new
                 {
@@ -121,6 +102,169 @@ namespace Showcase.Persistence.Migrations
                         principalTable: "bucket_files",
                         principalColumn: "bucket_file_id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "profiles",
+                columns: table => new
+                {
+                    profile_id = table.Column<string>(nullable: false),
+                    created_by = table.Column<string>(nullable: true),
+                    created_on = table.Column<DateTime>(nullable: false),
+                    last_modified_by = table.Column<string>(nullable: true),
+                    last_modified_on = table.Column<DateTime>(nullable: true),
+                    username = table.Column<string>(nullable: true),
+                    email = table.Column<string>(nullable: true),
+                    name = table.Column<string>(nullable: false),
+                    description = table.Column<string>(nullable: true),
+                    profile_picture_id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_profiles", x => x.profile_id);
+                    table.ForeignKey(
+                        name: "FK_profiles_bucket_files_profile_picture_id",
+                        column: x => x.profile_picture_id,
+                        principalTable: "bucket_files",
+                        principalColumn: "bucket_file_id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "project_tags",
+                columns: table => new
+                {
+                    display_project_id = table.Column<string>(nullable: false),
+                    tag_id = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_project_tags", x => new { x.display_project_id, x.tag_id });
+                    table.ForeignKey(
+                        name: "FK_project_tags_display_projects_display_project_id",
+                        column: x => x.display_project_id,
+                        principalTable: "display_projects",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_project_tags_tags_tag_id",
+                        column: x => x.tag_id,
+                        principalTable: "tags",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "blog_post_tags",
+                columns: table => new
+                {
+                    blog_post_id = table.Column<string>(nullable: false),
+                    tag_id = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_blog_post_tags", x => new { x.blog_post_id, x.tag_id });
+                    table.ForeignKey(
+                        name: "FK_blog_post_tags_blog_posts_blog_post_id",
+                        column: x => x.blog_post_id,
+                        principalTable: "blog_posts",
+                        principalColumn: "blog_post_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_blog_post_tags_tags_tag_id",
+                        column: x => x.tag_id,
+                        principalTable: "tags",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "activity_notes",
+                columns: table => new
+                {
+                    activity_note_id = table.Column<string>(nullable: false),
+                    created_by = table.Column<string>(nullable: true),
+                    created_on = table.Column<DateTime>(nullable: false),
+                    last_modified_by = table.Column<string>(nullable: true),
+                    last_modified_on = table.Column<DateTime>(nullable: true),
+                    activity_type = table.Column<EActivityType>(nullable: false),
+                    title = table.Column<string>(nullable: true),
+                    description = table.Column<string>(nullable: true),
+                    note_text = table.Column<string>(nullable: true),
+                    showcase_profile_id = table.Column<string>(nullable: true),
+                    blog_post_id = table.Column<string>(nullable: true),
+                    project_id = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_activity_notes", x => x.activity_note_id);
+                    table.ForeignKey(
+                        name: "FK_activity_notes_blog_posts_blog_post_id",
+                        column: x => x.blog_post_id,
+                        principalTable: "blog_posts",
+                        principalColumn: "blog_post_id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_activity_notes_display_projects_project_id",
+                        column: x => x.project_id,
+                        principalTable: "display_projects",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_activity_notes_profiles_showcase_profile_id",
+                        column: x => x.showcase_profile_id,
+                        principalTable: "profiles",
+                        principalColumn: "profile_id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "blog_post_watchers",
+                columns: table => new
+                {
+                    watcher_id = table.Column<string>(nullable: false),
+                    blog_post_id = table.Column<string>(nullable: false),
+                    cancelled = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_blog_post_watchers", x => new { x.blog_post_id, x.watcher_id });
+                    table.ForeignKey(
+                        name: "FK_blog_post_watchers_blog_posts_blog_post_id",
+                        column: x => x.blog_post_id,
+                        principalTable: "blog_posts",
+                        principalColumn: "blog_post_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_blog_post_watchers_profiles_watcher_id",
+                        column: x => x.watcher_id,
+                        principalTable: "profiles",
+                        principalColumn: "profile_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "profile_tags",
+                columns: table => new
+                {
+                    showcase_profile_id = table.Column<string>(nullable: false),
+                    tag_id = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_profile_tags", x => new { x.showcase_profile_id, x.tag_id });
+                    table.ForeignKey(
+                        name: "FK_profile_tags_profiles_showcase_profile_id",
+                        column: x => x.showcase_profile_id,
+                        principalTable: "profiles",
+                        principalColumn: "profile_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_profile_tags_tags_tag_id",
+                        column: x => x.tag_id,
+                        principalTable: "tags",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,143 +317,6 @@ namespace Showcase.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "profile_tags",
-                columns: table => new
-                {
-                    showcase_profile_id = table.Column<string>(nullable: false),
-                    tag_id = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_profile_tags", x => new { x.showcase_profile_id, x.tag_id });
-                    table.ForeignKey(
-                        name: "FK_profile_tags_profiles_showcase_profile_id",
-                        column: x => x.showcase_profile_id,
-                        principalTable: "profiles",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_profile_tags_tags_tag_id",
-                        column: x => x.tag_id,
-                        principalTable: "tags",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "project_tags",
-                columns: table => new
-                {
-                    display_project_id = table.Column<string>(nullable: false),
-                    tag_id = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_project_tags", x => new { x.display_project_id, x.tag_id });
-                    table.ForeignKey(
-                        name: "FK_project_tags_display_projects_display_project_id",
-                        column: x => x.display_project_id,
-                        principalTable: "display_projects",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_project_tags_tags_tag_id",
-                        column: x => x.tag_id,
-                        principalTable: "tags",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "activity_notes",
-                columns: table => new
-                {
-                    activity_note_id = table.Column<string>(nullable: false),
-                    created_by = table.Column<string>(nullable: true),
-                    created_on = table.Column<DateTime>(nullable: false),
-                    last_modified_by = table.Column<string>(nullable: true),
-                    last_modified_on = table.Column<DateTime>(nullable: true),
-                    activity_type = table.Column<EActivityType>(nullable: false),
-                    title = table.Column<string>(nullable: true),
-                    description = table.Column<string>(nullable: true),
-                    note_text = table.Column<string>(nullable: true),
-                    showcase_profile_id = table.Column<string>(nullable: true),
-                    blog_post_id = table.Column<string>(nullable: true),
-                    project_id = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_activity_notes", x => x.activity_note_id);
-                    table.ForeignKey(
-                        name: "FK_activity_notes_blog_posts_blog_post_id",
-                        column: x => x.blog_post_id,
-                        principalTable: "blog_posts",
-                        principalColumn: "blog_post_id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_activity_notes_display_projects_project_id",
-                        column: x => x.project_id,
-                        principalTable: "display_projects",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_activity_notes_profiles_showcase_profile_id",
-                        column: x => x.showcase_profile_id,
-                        principalTable: "profiles",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "blog_post_tags",
-                columns: table => new
-                {
-                    blog_post_id = table.Column<string>(nullable: false),
-                    tag_id = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_blog_post_tags", x => new { x.blog_post_id, x.tag_id });
-                    table.ForeignKey(
-                        name: "FK_blog_post_tags_blog_posts_blog_post_id",
-                        column: x => x.blog_post_id,
-                        principalTable: "blog_posts",
-                        principalColumn: "blog_post_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_blog_post_tags_tags_tag_id",
-                        column: x => x.tag_id,
-                        principalTable: "tags",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "blog_post_watchers",
-                columns: table => new
-                {
-                    watcher_id = table.Column<string>(nullable: false),
-                    blog_post_id = table.Column<string>(nullable: false),
-                    cancelled = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_blog_post_watchers", x => new { x.blog_post_id, x.watcher_id });
-                    table.ForeignKey(
-                        name: "FK_blog_post_watchers_blog_posts_blog_post_id",
-                        column: x => x.blog_post_id,
-                        principalTable: "blog_posts",
-                        principalColumn: "blog_post_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_blog_post_watchers_profiles_watcher_id",
-                        column: x => x.watcher_id,
-                        principalTable: "profiles",
-                        principalColumn: "profile_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_activity_notes_blog_post_id",
                 table: "activity_notes",
@@ -354,6 +361,11 @@ namespace Showcase.Persistence.Migrations
                 name: "IX_profile_watchers_watchee_id",
                 table: "profile_watchers",
                 column: "watchee_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_profiles_profile_picture_id",
+                table: "profiles",
+                column: "profile_picture_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_project_tags_tag_id",

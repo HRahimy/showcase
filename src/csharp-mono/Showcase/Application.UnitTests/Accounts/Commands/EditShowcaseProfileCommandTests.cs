@@ -6,6 +6,7 @@ using Showcase.Application.Common.Exceptions;
 using Showcase.Application.Common.Interfaces;
 using Showcase.Application.UnitTests.Common;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -14,17 +15,11 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
 {
     public class EditShowcaseProfileCommandTests : CommandTestBase
     {
-        private readonly Mock<IMediator> _mediatorMock;
-        private readonly Mock<ICurrentUserService> _currentUserMock;
-        private readonly Mock<IUserManager> _userManagerMock;
         private readonly EditShowcaseProfileCommandHandler _sut;
 
         public EditShowcaseProfileCommandTests()
             : base()
         {
-            _mediatorMock = new Mock<IMediator>();
-            _currentUserMock = new Mock<ICurrentUserService>();
-            _userManagerMock = new Mock<IUserManager>();
             _sut = new EditShowcaseProfileCommandHandler(_context, _mediatorMock.Object, _currentUserMock.Object, _userManagerMock.Object);
         }
 
@@ -40,32 +35,11 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
                 ProfileId = "HAMZA",
                 NewProfileDescription = "Dummy Description",
                 NewProfileUsername = "dummyusername",
-                NewThumbnailFileId = "dummyFileId"
+                NewThumbnailFileId = "hamzaProfileImage1"
             };
 
             // Assert
             await Assert.ThrowsAsync<ForbiddenException>(() => _sut.Handle(command, CancellationToken.None));
-        }
-
-        [Fact]
-        public async Task GivenRequesterAndTargetProfileIdMismatch_DoesNotModifyProfile()
-        {
-            // Arrange
-            _currentUserMock.Setup(x => x.IsAuthenticated).Returns(true);
-            _currentUserMock.Setup(x => x.UserId).Returns("HRAH");
-            _currentUserMock.Setup(x => x.Username).Returns("hrahimy");
-            var command = new EditShowcaseProfileCommand
-            {
-                ProfileId = "HAMZA",
-                NewProfileDescription = "Dummy Description",
-                NewProfileUsername = "dummyusername",
-                NewThumbnailFileId = "dummyFileId"
-            };
-
-            // Act
-            await _sut.Handle(command, CancellationToken.None);
-
-            // Assert
             var profile = await _context.Profiles.FindAsync("HAMZA");
             Assert.False(profile.LastModifiedOn == DateTime.Now);
         }
@@ -84,37 +58,66 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
         [Fact]
         public async Task GivenNonUniqueUsername_ThrowsResourceConflictException()
         {
+            _currentUserMock.Setup(x => x.IsAuthenticated).Returns(true);
+            _currentUserMock.Setup(x => x.UserId).Returns("HAMZA");
             // Arrange
             var command = new EditShowcaseProfileCommand
             {
                 ProfileId = "HAMZA",
                 NewProfileDescription = "Dummy Description",
                 NewProfileUsername = "hrah12",
-                NewThumbnailFileId = "dummyFileId"
+                NewThumbnailFileId = "hamzaProfileImage1"
             };
 
             // Assert
             await Assert.ThrowsAsync<ResourceConflictException>(() => _sut.Handle(command, CancellationToken.None));
+            var profile = await _context.Profiles.FindAsync("HAMZA");
+            Assert.False(profile.LastModifiedOn == DateTime.Now);
         }
 
         [Fact]
-        public async Task GivenNonUniqueUsername_DoesNotModifyProfile()
+        public async Task GivenNonExistingProfileImage_ThrowsNotFoundException()
+        {
+            _currentUserMock.Setup(x => x.IsAuthenticated).Returns(true);
+            _currentUserMock.Setup(x => x.UserId).Returns("HAMZA");
+            var nonExistantFileId = new Guid().ToString();
+            var command = new EditShowcaseProfileCommand
+            {
+                ProfileId = "HAMZA",
+                NewProfileDescription = "Dummy description",
+                NewProfileUsername = "hrah42",
+                NewThumbnailFileId = nonExistantFileId
+            };
+
+            // Assert
+            await Assert.ThrowsAsync<NotFoundException>(() => _sut.Handle(command, CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GivenValidRequest_UpdatesTheUser()
         {
             // Arrange
+            _currentUserMock.Setup(x => x.IsAuthenticated).Returns(true);
+            _currentUserMock.Setup(x => x.UserId).Returns("HAMZA");
+            _currentUserMock.Setup(x => x.Username).Returns("hrahimy");
             var command = new EditShowcaseProfileCommand
             {
                 ProfileId = "HAMZA",
                 NewProfileDescription = "Dummy Description",
-                NewProfileUsername = "hrah12",
-                NewThumbnailFileId = "dummyFileId"
+                NewProfileUsername = "hrah512",
+                NewThumbnailFileId = "hamzaProfileImage1",
+                NewProfileName = "Hamza Rahimy"
             };
 
             // Act
             await _sut.Handle(command, CancellationToken.None);
 
             // Assert
-            var profile = await _context.Profiles.FindAsync("HAMZA");
-            Assert.False(profile.LastModifiedOn == DateTime.Now);
+            _userManagerMock.Verify(m => m.EditUserAsync(It.Is<string>(c => c == _currentUserMock.Object.UserId)
+                , It.Is<string>(c => c == command.NewProfileUsername)
+                , It.Is<string>(c => c == command.NewProfileName)
+                , It.Is<string>(c => c == command.NewProfileDescription))
+            , Times.Once);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace Showcase.Infrastructure.UserManager
             throw new System.NotImplementedException();
         }
 
-        public async Task<(Result Result, ShowcaseUser User)> EditUserAsync(string userId, string userName = null, string givenName = null, string familyName = null, string nickName = null, string name = null, Dictionary<string, object> userMetadata = null, Dictionary<string, object> appMetadata = null, bool blocked = false)
+        public async Task<(Result Result, ShowcaseUser User)> EditUserAsync(string userId, string userName, string name, string description)
         {
             try
             {
@@ -62,16 +62,14 @@ namespace Showcase.Infrastructure.UserManager
 
                 var managementClient = new ManagementApiClient(apiToken.AccessToken, Options.Auth0TenantDomain);
 
+                var userMetadata = new Dictionary<string, object>();
+                userMetadata.Add("description", description);
+
                 var editedUser = await managementClient.Users.UpdateAsync(userId, new UserUpdateRequest
                 {
                     UserName = userName,
-                    FirstName = givenName,
-                    LastName = familyName,
-                    NickName = nickName,
                     FullName = name,
                     UserMetadata = userMetadata,
-                    AppMetadata = appMetadata,
-                    Blocked = blocked,
                 });
 
                 var toReturnUser = _mapper.Map<ShowcaseUser>(editedUser);

@@ -11,7 +11,7 @@ using Showcase.Persistence;
 namespace Showcase.Persistence.Migrations
 {
     [DbContext(typeof(ShowcaseDbContext))]
-    [Migration("20200830160746_init")]
+    [Migration("20200930161302_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -405,11 +405,17 @@ namespace Showcase.Persistence.Migrations
                         .HasColumnName("name")
                         .HasColumnType("text");
 
+                    b.Property<string>("ProfilePictureId")
+                        .HasColumnName("profile_picture_id")
+                        .HasColumnType("text");
+
                     b.Property<string>("Username")
                         .HasColumnName("username")
                         .HasColumnType("text");
 
                     b.HasKey("ProfileId");
+
+                    b.HasIndex("ProfilePictureId");
 
                     b.ToTable("profiles");
                 });
@@ -552,6 +558,13 @@ namespace Showcase.Persistence.Migrations
                         .HasForeignKey("WatcherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Showcase.Domain.Entities.ShowcaseProfile", b =>
+                {
+                    b.HasOne("Showcase.Domain.Entities.BucketFile", "ProfilePicture")
+                        .WithMany()
+                        .HasForeignKey("ProfilePictureId");
                 });
 #pragma warning restore 612, 618
         }
