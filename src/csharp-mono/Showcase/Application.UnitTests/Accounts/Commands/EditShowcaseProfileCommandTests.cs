@@ -118,6 +118,9 @@ namespace Showcase.Application.UnitTests.Accounts.Commands
                 , It.Is<string>(c => c == command.NewProfileName)
                 , It.Is<string>(c => c == command.NewProfileDescription))
             , Times.Once);
+            var profile = await _context.Profiles.FindAsync(_currentUserMock.Object.UserId);
+            Assert.Equal(profile.LastModifiedOn, _dateTimeMock.Object.Now);
+            Assert.Equal(profile.LastModifiedBy, _currentUserMock.Object.UserId);
         }
     }
 }

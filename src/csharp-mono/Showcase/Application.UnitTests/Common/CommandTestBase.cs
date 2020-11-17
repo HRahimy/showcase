@@ -14,7 +14,7 @@ namespace Showcase.Application.UnitTests.Common
         protected readonly Mock<ICurrentUserService> _currentUserMock;
         protected readonly Mock<IUserManager> _userManagerMock;
         private readonly DateTime _dateTime;
-        private readonly Mock<IDateTime> _dateTimeMock;
+        protected readonly Mock<IDateTime> _dateTimeMock;
 
         public CommandTestBase()
         {

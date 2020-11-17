@@ -9,9 +9,9 @@
       "dependencies": "*",
       "devDependencies": "*"
     },
+    "tsconfig.base.json": "*",
     "tslint.json": "*",
-    "nx.json": "*",
-    "tsconfig.base.json": "*"
+    "nx.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
@@ -22,12 +22,15 @@
     }
   },
   "projects": {
-    "todos": {
+    "showcaseplatform": {
       "tags": []
     },
-    "todos-e2e": {
+    "showcaseplatform-e2e": {
       "tags": [],
-      "implicitDependencies": ["todos"]
+      "implicitDependencies": ["showcaseplatform"]
+    },
+    "shared-ui": {
+      "tags": []
     }
   }
 }
